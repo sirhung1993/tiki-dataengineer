@@ -1,42 +1,59 @@
 package vn.tiki.product.sample;
 
+import java.util.ArrayList;
 import java.util.List;
+import vn.tiki.grpc.model.product.ProductModel.Attributes;
 import vn.tiki.grpc.model.product.ProductModel.Colors;
 import vn.tiki.grpc.model.product.ProductModel.Product;
 import vn.tiki.grpc.model.product.ProductModel.Storage;
 
 public class SampleConfigurableProduct extends ConfigurableProductAbstract {
 
-//  private SampleProduct sampleProduct = new SampleProduct();
-//  private Product iphoneX1 = sampleProduct.getIphoneX1();
-//  private Product iphoneX2 = sampleProduct.getIphoneX2();
-
   public SampleConfigurableProduct(Product... products) {
     super(products);
   }
 
   @Override
-  public void setColor() {
-
+  public Integer validateConfigurableProduct(Product product) {
+    Integer index = 0;
+    for (Product p : this.products) {
+      if (p.getAttribute().getColor().equals(product.getAttribute().getColor())
+          && p.getAttribute().getStorage().equals(product.getAttribute().getStorage())) {
+        return  index;
+      } else {
+        index++;
+      }
+    }
+    return null;
   }
 
   @Override
-  public void setStorage() {
-
-  }
-
-  @Override
-  public boolean validateConfigurableProduct() {
-    return false;
+  public Product getConfigurableProduct(Colors colors, Storage storage) {
+    Product p = Product.newBuilder()
+        .setAttribute(Attributes.newBuilder()
+            .setColor(colors)
+            .setStorage(storage)
+            .build())
+        .build();
+    Integer productIndex = validateConfigurableProduct(p);
+    return productIndex != null ? this.products[productIndex] : null;
   }
 
   @Override
   public List<Colors> getListColor() {
-    return null;
+    List<Colors> listColor = new ArrayList<>();
+    for (Product p : this.products) {
+      listColor.add(p.getAttribute().getColor());
+    }
+    return this.removeDuplicate(listColor);
   }
 
   @Override
   public List<Storage> getListStorage() {
-    return null;
+    List<Storage> listStorage = new ArrayList<>();
+    for (Product p : this.products) {
+      listStorage.add(p.getAttribute().getStorage());
+    }
+    return this.removeDuplicate(listStorage);
   }
 }
