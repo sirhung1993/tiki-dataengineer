@@ -1,4 +1,4 @@
-package vn.tiki.grpc.client;
+package vn.tiki.product.sample;
 
 import vn.tiki.grpc.model.product.ProductModel.Attributes;
 import vn.tiki.grpc.model.product.ProductModel.Colors;
@@ -7,7 +7,7 @@ import vn.tiki.grpc.model.product.ProductModel.Storage;
 
 public class SampleProduct {
 
-  Product iphoneX1 = Product.newBuilder()
+  private Product iphoneX1 = Product.newBuilder()
       .setName("Iphone X 64Gb Black")
       .setPrice(999)
       .setMarketPrice(1099)
@@ -24,7 +24,7 @@ public class SampleProduct {
           .build())
       .build();
 
-  Product iphoneX2 = Product.newBuilder()
+  private Product iphoneX2 = Product.newBuilder()
       .setName("Iphone X 128Gb Yellow")
       .setPrice(950)
       .setMarketPrice(1050)

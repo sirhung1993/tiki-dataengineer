@@ -48,5 +48,11 @@
       <version>5.1.0</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>vn.tiki.grpc.model</groupId>
+      <artifactId>product-model</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package vn.tiki.grpc.client;
+package vn.tiki.product.sample;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
