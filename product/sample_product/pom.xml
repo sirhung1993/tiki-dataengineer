@@ -5,30 +5,16 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>vn.tiki.grpc</groupId>
-    <artifactId>model</artifactId>
+    <artifactId>product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>vn.tiki.grpc.client</groupId>
-  <artifactId>client</artifactId>
+  <groupId>vn.tiki.product</groupId>
+  <artifactId>sample-product</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <dependencies>
-    <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-netty-shaded</artifactId>
-      <version>${grpc.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client</artifactId>
-      <version>${google.http.client.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client-jackson2</artifactId>
-      <version>${google.http.client.version}</version>
-    </dependency>
     <dependency>
       <groupId>io.opencensus</groupId>
       <artifactId>opencensus-contrib-http-util</artifactId>
@@ -58,14 +44,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>vn.tiki.grpc.model</groupId>
-      <artifactId>product-model</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>vn.tiki.grpc</groupId>
-      <artifactId>model</artifactId>
+      <groupId>vn.tiki.product</groupId>
+      <artifactId>base</artifactId>
       <version>0.0.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>

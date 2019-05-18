@@ -1,4 +1,4 @@
-package vn.tiki.product.sample;
+package vn.tiki.product;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

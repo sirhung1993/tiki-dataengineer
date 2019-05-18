@@ -1,4 +1,4 @@
-package vn.tiki.product.sample;
+package vn.tiki.product.base;
 
 import java.util.ArrayList;
 import java.util.List;

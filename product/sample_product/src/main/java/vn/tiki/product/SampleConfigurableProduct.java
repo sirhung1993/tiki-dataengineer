@@ -1,4 +1,4 @@
-package vn.tiki.product.sample;
+package vn.tiki.product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import vn.tiki.grpc.model.product.ProductModel.Attributes;
 import vn.tiki.grpc.model.product.ProductModel.Colors;
 import vn.tiki.grpc.model.product.ProductModel.Product;
 import vn.tiki.grpc.model.product.ProductModel.Storage;
+import vn.tiki.product.base.ConfigurableProductAbstract;
 
 public class SampleConfigurableProduct extends ConfigurableProductAbstract {
 

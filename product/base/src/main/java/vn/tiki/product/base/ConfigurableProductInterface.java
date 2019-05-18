@@ -1,4 +1,4 @@
-package vn.tiki.product.sample;
+package vn.tiki.product.base;
 
 import java.util.List;
 import vn.tiki.grpc.model.product.ProductModel.Colors;

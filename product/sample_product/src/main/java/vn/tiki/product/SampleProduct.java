@@ -1,4 +1,4 @@
-package vn.tiki.product.sample;
+package vn.tiki.product;
 
 import vn.tiki.grpc.model.product.ProductModel.Attributes;
 import vn.tiki.grpc.model.product.ProductModel.Colors;

@@ -1,10 +1,9 @@
-package vn.tiki.product.sample;
+package vn.tiki.product;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import vn.tiki.grpc.model.product.ProductModel.Attributes;
 import vn.tiki.grpc.model.product.ProductModel.Colors;

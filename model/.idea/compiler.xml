@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="model" />
+        <module name="base" />
         <module name="sample_product" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="base" target="1.8" />
       <module name="client-sample" target="1.5" />
       <module name="product-model" target="1.8" />
       <module name="saas-api-client" target="1.8" />
