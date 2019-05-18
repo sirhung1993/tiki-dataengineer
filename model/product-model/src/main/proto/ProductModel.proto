@@ -1,0 +1,34 @@
+syntax = "proto3";
+package vn.tiki.grpc.model.product;
+
+enum Colors {
+  UNKNOWN_COLORS = 0;
+  BLACK = 1;
+  YELLOW = 2;
+}
+
+enum Storage {
+  UNKNOWN_STORAGE = 0;
+  SIX_FOUR_GB = 1;
+  ONE_TWO_EIGHT_GB = 2;
+}
+
+message Attributes {
+  repeated string imagesURL = 1;
+  Colors color = 2;
+  Storage storage = 3;
+  string description = 4;
+  string origin = 5;
+  string factoryDatetime = 6;
+  float weight = 7;
+  map<string, string> more = 8;
+}
+
+message Product {
+  string name = 1;
+  double price = 2;
+  float marketPrice = 3;
+  Attributes attribute = 4;
+}
+
+

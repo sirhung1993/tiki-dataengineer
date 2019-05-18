@@ -4,13 +4,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>vn.edu.topicanative.saas</groupId>
-    <artifactId>saas-api</artifactId>
+    <groupId>vn.tiki.grpc</groupId>
+    <artifactId>model</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>vn.edu.topicanative.saas.api</groupId>
-  <artifactId>saas-api-model</artifactId>
+  <groupId>vn.tiki.grpc.model</groupId>
+  <artifactId>product-model</artifactId>
   <packaging>jar</packaging>
 
   <properties>
@@ -19,12 +19,8 @@
   </properties>
 
   <dependencies>
-      <dependency>
-          <groupId>javax.annotation</groupId>
-          <artifactId>jsr250-api</artifactId>
-          <version>1.0</version>
-      </dependency>
   </dependencies>
+
   <build>
     <extensions>
       <extension>

@@ -4,42 +4,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>vn.edu.topicanative.saas</groupId>
-    <artifactId>saas-api</artifactId>
+    <groupId>vn.tiki.grpc</groupId>
+    <artifactId>model</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>vn.edu.topicanative.saas.api</groupId>
-  <artifactId>saas-api-client</artifactId>
+  <groupId>vn.tiki.grpc.client</groupId>
+  <artifactId>client</artifactId>
   <packaging>jar</packaging>
 
-  <properties>
-    <keycloak.client.version>4.8.3.Final</keycloak.client.version>
-  </properties>
-
   <dependencies>
-    <dependency>
-      <groupId>vn.edu.topicanative.saas.api</groupId>
-      <artifactId>saas-api-model</artifactId>
-      <version>${saas.api.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>vn.edu.topicanative.saas.api</groupId>
-      <artifactId>saas-api-utils</artifactId>
-      <version>${saas.api.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.keycloak</groupId>
-      <artifactId>keycloak-authz-client</artifactId>
-      <version>${keycloak.client.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.keycloak</groupId>
-      <artifactId>keycloak-authz-client</artifactId>
-      <version>6.0.1</version>
-      <scope>compile</scope>
-    </dependency>
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-netty-shaded</artifactId>
