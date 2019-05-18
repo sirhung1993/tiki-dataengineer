@@ -1,0 +1,46 @@
+syntax = "proto3";
+//
+// Copyright (C) 2019 Topica Edtech Group.
+//
+
+package vn.edu.topicanative.saas.api.model.lms;
+
+import "AdvisorModel.proto";
+
+
+message AccountCreator{
+  User user = 4;
+  Enrol enrol = 5;
+
+}
+
+message User{
+  string id = 1;
+  string lastname = 2;
+  string firstname = 3;
+  string email = 4;
+  string phone1 = 5;
+  string lang = 6;
+  vn.edu.topicanative.saas.api.model.advisor.Levels currentlevel = 7;
+  int32 package = 8;
+  string studenttype = 9;
+
+}
+
+
+
+message Enrol{
+  int64 timestart = 1;
+  int64 timeend = 2;
+	int32 courseid = 3;
+	string role = 4;
+	string hvvoxy = 5;
+	string tutoring = 6;
+}
+
+message AccountCreatorResponse{
+  bool status = 1;
+  int32 id = 2;
+  string username = 3;
+  string message = 4;
+}

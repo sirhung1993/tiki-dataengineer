@@ -1,0 +1,134 @@
+syntax = "proto3";
+//
+// Copyright (C) 2019 Topica Edtech Group.
+//
+
+package vn.edu.topicanative.saas.api.model.activity;
+
+import "MetaDataModel.proto";
+import "AdvisorModel.proto";
+
+enum ActivitySource {
+  UNKNOWN_ACTIVITY_SOURCE = 0;
+  SYSTEM = 1;
+}
+
+enum ActivityType {
+  UNKNOWN_ACTIVITY_TYPE = 0;
+  WEEKLY_TEST = 1 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Trả điểm thi tuần"];
+  MONTH_TEST = 2 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Trả điểm thi tháng"];
+  CARE_CALL = 3 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Gọi điện chăm sóc"];
+  FEE_RECEIVE = 4 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Nhận học phí"];
+}
+
+enum ActivityEventType {
+  UNKNOWN_ACTIVITY_EVENT_TYPE = 0;
+  REPORT_SUCCESS = 1;
+  REPORT_FAIL = 2;
+}
+
+message FeeReceiveActivity {
+  string userId = 1;
+  ActivitySource activitySource = 2;
+  ActivityType activityType = 3;
+  int64 activityUtcTimestamp = 4;
+  repeated string refIds = 5;
+  vn.edu.topicanative.saas.api.model.advisor.PaymentMethods method = 6;
+  vn.edu.topicanative.saas.api.model.advisor.Banks fromBank = 7;
+  vn.edu.topicanative.saas.api.model.advisor.Places fromPlace = 8;
+  double amount = 9;
+  string contentBilling = 10;
+  string contactId = 11;
+}
+
+message FeeReceiveActivities {
+  repeated FeeReceiveActivity feeReceiveActivities = 1;
+}
+
+message Activity {
+  string userId = 1;
+  ActivitySource activitySource = 2;
+  ActivityType activityType = 3;
+  int64 activityUtcTimestamp = 4;
+  repeated string refIds = 5;
+  map<string, string> data = 6;
+}
+
+message ActivityEvent {
+  string userId = 1;
+  ActivitySource activitySource = 2;
+  ActivityType activityType = 3;
+  int64 activityUtcTimestamp = 4;
+  string eventId = 5;
+  ActivityEventType type = 6;
+  string message = 7;
+}
+
+message Activities {
+  repeated Activity activities = 1;
+}
+
+message WeeklyTestActivity {
+  string userId = 1 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "User ID"];
+  ActivitySource activitySource = 2;
+  ActivityType activityType = 3;
+  int64 activityUtcTimestamp = 4;
+  repeated string refIds = 5;
+  string nameTest = 6 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Tên bài test"];
+  int32 timeLongTest = 7 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian test"];
+  int32 timeDoTest = 8 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian làm"];
+  int64 startTestTime = 9 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian bắt đầu"];
+  int64 finishTestTime = 10 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian kết thúc"];
+  float readScore = 11 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm đọc"];
+  float speakScore = 12 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm nói"];
+  float listenScore = 13 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm nghe"];
+  float writeScore = 14 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm viết"];
+  float grammaScore = 15 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm ngữ pháp"];
+}
+
+message MonthlyTestActivity {
+  string userId = 1 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "User ID"];
+  ActivitySource activitySource = 2;
+  ActivityType activityType = 3;
+  int64 activityUtcTimestamp = 4;
+  repeated string refIds = 5;
+  string nameTest = 6 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Tên bài test"];
+  int32 timeLongTest = 7 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian test"];
+  int32 timeDoTest = 8 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian làm"];
+  int64 startTestTime = 9 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian bắt đầu"];
+  int64 finishTestTime = 10 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Thời gian kết thúc"];
+  float readScore = 11 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm đọc"];
+  float speakScore = 12 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm nói"];
+  float listenScore = 13 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm nghe"];
+  float writeScore = 14 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm viết"];
+  float grammaScore = 15 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm ngữ pháp"];
+  float totalScore = 16 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Điểm tổng"];
+  float note = 17 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Lưu ý"];
+}
+
+message CallActivity {
+  string userId = 1 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "User ID"];
+  ActivitySource activitySource = 2;
+  ActivityType activityType = 3;
+  int64 activityUtcTimestamp = 4;
+  repeated string refIds = 5;
+  string callId = 6 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "ID cuộc gọi"];
+  string phone = 7 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Số điện thoại"];
+  string subject = 8 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Mục đích"];
+  string contactId = 9 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "ContactId"];
+}
+
+message CallActivities {
+  repeated CallActivity callActivities = 1;
+}
+
+message ActivityId {
+  string userId = 1;
+  ActivitySource activitySource = 2;
+  ActivityType activityType = 3;
+  int64 activityUtcTimestamp = 4;
+}
+
+message ActivityTypeRequest {
+  ActivityType activityType = 1;
+}

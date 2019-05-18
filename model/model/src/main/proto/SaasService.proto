@@ -1,0 +1,77 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package vn.edu.topicanative.saas.grpc.service;
+
+import "MetaDataModel.proto";
+import "CommonModel.proto";
+import "RequestModel.proto";
+import "ResponseModel.proto";
+import "ActivityModel.proto";
+import "AdvisorModel.proto";
+import "LmsModel.proto";
+import "MarketModel.proto";
+import "NotificationModel.proto";
+import "PaymentModel.proto";
+import "RuleModel.proto";
+import "SecurityModel.proto";
+import "UserModel.proto";
+import "StudentCareHistoryModel.proto";
+
+service GrpcCommonService {
+  rpc check (vn.edu.topicanative.saas.api.model.common.StatusRequest) returns (vn.edu.topicanative.saas.api.model.common.StatusResponse);
+}
+
+service GrpcActivityService {
+  rpc report (vn.edu.topicanative.saas.api.model.activity.Activity) returns (vn.edu.topicanative.saas.api.model.response.Response);
+  rpc get (vn.edu.topicanative.saas.api.model.activity.ActivityId) returns (vn.edu.topicanative.saas.api.model.activity.Activities);
+  rpc getActivityTypeList (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.EnumSchema);
+  rpc getActivityFields (vn.edu.topicanative.saas.api.model.activity.ActivityTypeRequest) returns (vn.edu.topicanative.saas.api.model.metadata.ProtobufMeta);
+}
+
+service GrpcAdvisorService {
+  rpc get (vn.edu.topicanative.saas.api.model.advisor.ContactId) returns (vn.edu.topicanative.saas.api.model.advisor.StudentContactInfo);
+  rpc getByStatus (vn.edu.topicanative.saas.api.model.advisor.ListStudentRequest) returns (vn.edu.topicanative.saas.api.model.advisor.ListStudent);
+  rpc saveCareCall(vn.edu.topicanative.saas.api.model.advisor.CareCall) returns (vn.edu.topicanative.saas.api.model.response.Response);
+}
+
+service GrpcNotificationService {
+  rpc send (vn.edu.topicanative.saas.api.model.notification.Messages) returns (vn.edu.topicanative.saas.api.model.response.Response);
+  rpc getTemplate (vn.edu.topicanative.saas.api.model.notification.TemplateId) returns (vn.edu.topicanative.saas.api.model.notification.Template);
+  rpc getAllTemplate (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.notification.Templates);
+  rpc saveTemplate (vn.edu.topicanative.saas.api.model.notification.Template) returns (vn.edu.topicanative.saas.api.model.response.Response);
+}
+
+service GrpcRuleService {
+  rpc get (vn.edu.topicanative.saas.api.model.rule.RuleId) returns (vn.edu.topicanative.saas.api.model.rule.Rule);
+  rpc getAll (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.rule.Rules);
+  rpc save (vn.edu.topicanative.saas.api.model.rule.Rule) returns (vn.edu.topicanative.saas.api.model.response.Response);
+  rpc getActions (vn.edu.topicanative.saas.api.model.rule.RuleId) returns (vn.edu.topicanative.saas.api.model.rule.Actions);
+  rpc getGeneralConditions (vn.edu.topicanative.saas.api.model.rule.RuleId) returns (vn.edu.topicanative.saas.api.model.rule.GeneralConditions);
+  rpc getAdvanceConditions (vn.edu.topicanative.saas.api.model.rule.RuleId) returns (vn.edu.topicanative.saas.api.model.rule.AdvanceConditions);
+  rpc getStudentSchema (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.ProtobufSchema);
+  rpc getTeacherSchema (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.ProtobufSchema);
+  rpc getAdvisorSchema (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.ProtobufSchema);
+  rpc getRuleStatusList (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.EnumSchema);
+  rpc getUserTypeList (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.EnumSchema);
+  rpc getActionTypeList (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.EnumSchema);
+  rpc getStudentConditionFields (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.ProtobufMeta);
+  rpc getTeacherConditionFields (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.ProtobufMeta);
+  rpc getAdvisorConditionFields (vn.edu.topicanative.saas.api.model.request.DefaultParam) returns (vn.edu.topicanative.saas.api.model.metadata.ProtobufMeta);
+}
+
+service GrpcHandOverService {
+  rpc provision(vn.edu.topicanative.saas.api.model.advisor.StudentHandOver) returns (vn.edu.topicanative.saas.api.model.advisor.StudentHandOverResponse);
+}
+
+service GrpcCallService{
+  rpc save(vn.edu.topicanative.saas.api.model.activity.Activity) returns (vn.edu.topicanative.saas.api.model.response.Response);
+  rpc makeCall (vn.edu.topicanative.saas.api.model.advisor.CallRequest) returns (vn.edu.topicanative.saas.api.model.advisor.CallResponse);
+}
+
+service GrpcPaymentActivityService {
+  rpc report (vn.edu.topicanative.saas.api.model.activity.FeeReceiveActivity) returns (vn.edu.topicanative.saas.api.model.response.Response);
+}
+
+service GrpcStudentCareHistoryService{
+  rpc getAllCareHistory(vn.edu.topicanative.saas.api.model.advisor.ContactId) returns (vn.edu.topicanative.saas.api.model.studentcare.StudentCareHistory);
+}

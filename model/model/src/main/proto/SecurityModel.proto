@@ -1,0 +1,23 @@
+syntax = "proto3";
+//
+// Copyright (C) 2019 Topica Edtech Group.
+//
+
+package vn.edu.topicanative.saas.api.model.security;
+
+message KeyCloakAuthInfo {
+  string userId = 1;
+  string username = 2;
+  string clientId = 3;
+  repeated string roles = 4;
+  bool active = 5;
+}
+
+enum SaasRole {
+  DEFAULT_ROLE = 0;
+  TOA_ADVISOR = 1;
+  TOA_ADMIN = 2;
+  TOA_MANAGER = 3;
+  ADAPTER_PROVISION = 4;
+  ADAPTER_CALLCENTER = 5;
+}

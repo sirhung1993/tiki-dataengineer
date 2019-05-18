@@ -1,0 +1,86 @@
+syntax = "proto3";
+//
+// Copyright (C) 2019 Topica Edtech Group.
+//
+
+package vn.edu.topicanative.saas.api.model.lms;
+
+message MarketPricingRequest {
+    repeated MarketPricing data = 1;
+}
+
+message MarketPricing {
+    UserInfo userInfo = 1 [json_name = "user_info"];
+    BuyerInfo buyerInfo = 2 [json_name = "buyer_info"];
+    repeated PriceInfo priceInfo = 3 [json_name = "price_info"];
+    InvoiceInfo invoiceInfo = 4 [json_name = "invoice_info"];
+    int32 courseId = 5 [json_name = "course_id"];
+    string hasActive = 6 [json_name = "has_active"];
+}
+
+message UserInfo {
+    string contactId = 1 [json_name = "contact_id"];
+    string userName = 2 [json_name = "username"];
+    string userEmail = 3 [json_name = "useremail"];
+    string lmsId = 4 [json_name = "lms_id"];
+
+}
+
+message BuyerInfo {
+    string buyerId = 1 [json_name = "buyer_id"];
+    string buyerName = 2 [json_name = "buyer_name"];
+}
+
+message PriceInfo {
+    string catCode = 1 [json_name = "cat_code"];
+    string price = 2;
+    string actualPrice = 3 [json_name = "actual_price"];
+
+}
+
+message InvoiceInfo {
+    string reason = 1;
+    bool hasDebt = 2 [json_name = "has_debt"];
+    int32 daysDebt = 3 [json_name = "days_debt"];
+}
+
+message PricingResponse {
+    bool status = 1;
+    string statusCode = 2 [json_name = "status_code"];
+    string msg = 3;
+    repeated PricingResponseData data = 4;
+}
+
+message PricingResponseData {
+    bool status = 1;
+    string statusCode = 2 [json_name = "status_code"];
+    string msg = 3;
+    PrincingData data = 4;
+}
+
+message PrincingData {
+    string contactId = 1 [json_name = "contact_id"];
+    int32 packageId = 2 [json_name = "packageid"];
+    repeated ProductDetail productDetail = 3 [json_name = "product_detail"];
+}
+
+message ProductDetail {
+    int32 productId = 1 [json_name = "product_id"];
+    string catCode = 2 [json_name = "cat_code"];
+    string packageName = 3 [json_name = "package_name"];
+    string packageParent = 4 [json_name = "package_parent"];
+    string packageCode = 5 [json_name = "package_code"];
+    string packageDescription = 6 [json_name = "package_description"];
+    string packageCost = 7 [json_name = "package_cost"];
+    string maxLockAccount = 8 [json_name = "max_lock_account"];
+    string maxLockDay = 9 [json_name = "max_lock_day"];
+    string packageTime = 10 [json_name = "package_time"];
+    string packageType = 11 [json_name = "package_type"];
+    string packageTimeMax = 12 [json_name = "package_time_max"];
+    string packageUnit = 13 [json_name = "package_unit"];
+    string subscribeCost = 14 [json_name = "subscribe_cost"];
+    string lsCost = 15 [json_name = "ls_cost"];
+    string scCost = 16 [json_name = "sc_cost"];
+    string linkImg = 17 [json_name = "link_img"];
+    string actualCost = 18 [json_name = "actual_cost"];
+}

@@ -1,0 +1,35 @@
+syntax = "proto3";
+//
+// Copyright (C) 2019 Topica Edtech Group.
+//
+
+package vn.edu.topicanative.saas.api.model.response;
+
+import "MetaDataModel.proto";
+
+message Entity {
+  string id = 1;
+  string objectName = 2;
+}
+
+message Error {
+  string code = 1;
+  string message = 2;
+}
+
+message Response {
+  Entity entity = 1;
+  Error error = 2;
+  Redirect redirect = 3;
+}
+
+message Redirect {
+  string location = 1;
+  Attribute headers = 2; 
+}
+
+message Attribute {
+  string name = 1;
+  string value = 2;
+}
+

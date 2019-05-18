@@ -1,0 +1,327 @@
+syntax = "proto3";
+package vn.edu.topicanative.saas.api.model.advisor;
+
+message ContactId {
+  string id = 1;
+}
+enum StudentStatus{
+  LA0 =0;
+}
+message ListStudentRequest {
+  StudentStatus studentStatus = 1;
+}
+message StudentModel{
+  StudentContactInfo studenContactInfo = 1;
+}
+message ListStudent{
+  repeated StudentModel students = 1;
+}
+
+message StudentContactInfo {
+  string contactId = 1;
+  int32 advisorId = 2;
+  int64 studentId = 3;
+  string fullname = 4;
+  string address = 5;
+  string gender = 6;
+  string vocative = 7;
+  string levelCare = 8;
+  string levelStudy = 9;
+  string packageCode = 10;
+  int32 suspend = 11;
+  string note = 12;
+  string status = 13;
+  int32 isVip = 14;
+  string birthday = 15;
+  string job = 16;
+  string skype = 17;
+  string studentType = 18;
+  string isVoxy = 19;
+  int32 onlyMobile = 20;
+  string email = 21;
+  string phone = 22;
+}
+
+/*
+* REQUEST
+* StudentHandOver
+*/
+
+message StudentHandOver {
+  StudentInfo studentInfo = 1;
+  Package package = 2;
+  bool isCheckDevice = 3;
+  string ssrsCode = 4;
+  repeated PromotionPackages promotionPackage= 5;
+  bool isNativeTalk = 6;
+  repeated Payments payments = 7;
+  ResultTest resultTest = 8;
+  TvtsInfo tvtsInfo = 9;
+  string sblink = 10;
+}
+
+message TvtsInfo {
+  string ID = 1;
+  string phone = 2;
+  string username = 3;
+  string email = 4;
+}
+
+message ResultTest {
+  Levels level = 1;
+  uint32 cacesPoint = 2;
+  uint32 toeicPoint = 3;
+  uint32 interviewPoint = 4;
+}
+
+enum Levels {
+  KHONG_XAC_DINH = 0;
+  basic = 1;
+  basic100 = 2;
+  basic200 = 3;
+  basic300 = 4;
+  inter = 5;
+  inter100 = 6;
+  inter200 = 7;
+  inter300 = 8;
+  advan = 9;
+  advan100 = 10;
+  advan200 = 11;
+  advan300 = 12;
+  sbasic = 13;
+}
+
+message StudentInfo {
+  string contactId = 1;
+  string lastName = 2;
+  string firstName = 3;
+  string fullName = 4;
+  Gender gender = 5;
+  string phone = 6;
+  string email = 7;
+  string dateOfBirth = 8;
+  string address = 9;
+}
+
+message Package {
+  Products product = 1;
+  string package = 2;
+  LearnTypes learnType = 3;
+  uint32 dayOfPackage = 4;
+  double valueOfPackage = 5;
+  Devices device = 6;
+}
+
+message Payments {
+  PaymentMethods method = 1;
+  Banks fromBank = 2;
+  Places fromPlace = 3;
+  float amount = 4;
+  string contentBilling = 5;
+  string dateOfTransaction = 6;// DD-MM-YYYY
+}
+
+enum Places {
+  KXDCountries = 0;
+  HN = 1;
+  HCM = 2;
+  DN = 3;
+}
+
+enum Banks {
+  UNKNOWN_BANK = 0;
+  VPBANK = 1;
+  Vietcombank = 2;
+  Techcombank = 3;
+  VietinBank = 4;
+  BIDV = 5;
+  AGRIBANK = 6;
+  BangkokBank = 7;
+  ACBBank = 8;
+  KBank = 9;
+  SCB = 10;
+}
+
+enum PaymentMethods {
+  UNKNOWN_PaymentMethods = 0;
+  BANKING = 1;
+  CASH = 2;
+  POS = 3;
+  CASH_HN = 4;
+  CASH_HCM = 5;
+  COD = 6;
+  COD1 = 7;
+  PayPal = 8;
+  OnePay = 9;
+}
+
+message PromotionPackages {
+  string name = 1;
+  string key = 2;
+}
+
+enum Devices {
+  UNKNOWN_Devices = 0;
+  PC = 1;
+  MOBILE = 2;
+  ALL = 3;
+}
+
+enum LearnTypes {
+  UNKNOWN_LearnTypes = 0;
+  TT = 1;
+  TC = 2;
+}
+
+enum Products {
+  UNKNOWN_Products = 0;
+  TOPMITO = 1;
+  TENUP = 2;
+}
+
+enum Gender {
+  UNKNOWN_Gender = 0;
+  NAM = 1;
+  NU = 2;
+}
+
+/*
+* RESPONSE
+* StudentHandOver
+*/
+
+enum HandOverStatus {
+  KHONG_GHI_NHAN = 0;
+  THEM_MOI = 1;
+  CAP_NHAT = 2;
+}
+
+message StudentHandOverResponse {
+  string message = 1;
+  bool isCorrect = 2;
+  HandOverStatus code = 3;
+}
+
+message StudentEmailInfo {
+  string contactId = 1;
+  string email = 2;
+  int32 timeCreated = 3;
+  int32 userId = 4;
+}
+
+message StudentPhoneInfo {
+  string contactId = 1;
+  string phone = 2;
+  int32 timeCreated = 3;
+  int32 userId = 4;
+}
+
+message StudentPaymentInfo {
+  string contactId = 1;
+  int64 timeCreated = 2;
+  string timeWantToLearn = 3;
+  int64 timeHandover = 4;
+  int32 statusHandover = 5;
+  int32 creatorId = 6;
+}
+
+message StudentExamPointInfo {
+  string contactId = 1;
+  int32 countTime = 2;
+  float casecPoint = 3;
+  string interviewPoint = 4;
+  float toiecPoint = 5;
+  int32 time = 6;
+}
+
+message StudentCasecPointInfo {
+  string contactId = 1;
+  int32 casecTimes = 2;
+  int32 casecTotal = 3;
+  int32 toiecPoint = 4;
+  int32 advisorId = 5;
+  int32 timeCreated = 6;
+}
+
+message StudentInterviewPointInfo {
+  string contactId = 1;
+  int32 interviewTimes = 2;
+  string interviewPoint = 3;
+  int32 advisorId = 4;
+  int32 timeCreated = 5;
+}
+
+message StudentTVTSInfo {
+  string contactId = 1;
+  string tvtsId = 2;
+  string tvtsPhone = 3;
+  string tvtsEmail = 4;
+  string tvtsName = 5;
+}
+
+/*
+* Call
+*/
+
+message Care {
+  int32 id = 1;
+  int32 advisorId = 2;
+  string contactId = 3;
+  string careTypeCode = 4;
+  string note = 5;
+  int32 courceId = 6;
+  string packageCode = 7;
+  int64 timeCreated = 8;
+  string status = 9;
+}
+
+message CareCall {
+  int32 id = 1;
+  string callId = 2;
+  string phone = 3;
+  int32 duration = 4;
+  string content = 5;
+  string audioFile = 6;
+  string callStatus = 7;
+  int64 callStart = 8;
+  int64 callEnd = 9;
+  int32 ringTime = 10;
+  int64 timeCreated = 11;
+}
+
+message CallHistory {
+  string id = 1;
+  string phone = 2;
+  string callStatus = 3;
+  int64 timeCreated = 4;
+}
+
+message CallRequest {
+  string messageCode = 1 [json_name = "message_code"];
+  string agentCode = 2 [json_name = "agent_code"];
+  string stationId = 3 [json_name = "station_id"];
+  string mobilePhone = 4 [json_name = "mobile_phone"];
+  string datetimeResponse = 5 [json_name = "datetime_response"];
+  string callId = 6 [json_name = "call_id"];
+  string errorCode = 7 [json_name = "error_code"];
+  string errorDesc = 8 [json_name = "error_desc"];
+  string user = 9;
+  string password = 10;
+}
+
+
+message CallResponse {
+  CallResponseBody data = 1;
+}
+
+message CallResponseBody {
+  string messageCode = 1 [json_name = "message_code"];
+  string agentCode = 2 [json_name = "agent_code"];
+  string stationId = 3 [json_name = "station_id"];
+  string mobilePhone = 4 [json_name = "mobile_phone"];
+  string datetimeResponse = 5 [json_name = "datetime_response"];
+  string callId = 6 [json_name = "call_id"];
+  string errorCode = 7 [json_name = "error_code"];
+  string errorDesc = 8 [json_name = "error_desc"];
+  string prefix = 9 [json_name = "prefix"];
+}

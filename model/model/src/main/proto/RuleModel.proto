@@ -1,0 +1,148 @@
+syntax = "proto3";
+//
+// Copyright (C) 2019 Topica Edtech Group.
+//
+
+package vn.edu.topicanative.saas.api.model.rule;
+
+import "MetaDataModel.proto";
+import "ActivityModel.proto";
+import "UserModel.proto";
+
+message Rule {
+  string id = 1;
+  string ruleKey = 2;
+  string name = 3;
+  RuleStatus status = 4;
+  vn.edu.topicanative.saas.api.model.user.UserType objectType = 5;
+  TriggerType triggerType = 6;
+  string triggerCronExpression = 7;
+  vn.edu.topicanative.saas.api.model.activity.ActivityType triggerActivityType = 8;
+  string description = 9;
+  string owner = 10;
+  Conditions conditions = 11;
+  Actions actions = 12;
+  string lastUpdatedBy = 13;
+  int64 updatedUtcTimestamp = 14;
+  int64 createdUtcTimestamp = 15;
+}
+
+enum RuleStatus {
+  UNKNOWN_RULE_STATUS = 0;
+  DRAFT = 1;
+  PENDING_FOR_REVIEW = 2;
+  ACTIVE = 3;
+  INACTIVE = 4;
+  DELETED = 5;
+}
+
+message Rules {
+  repeated Rule rules = 1;
+}
+
+enum TriggerType {
+  UNKNOWN_TRIGGER_TYPE = 0;
+  ON_EVENT = 1;
+  ON_SCHEDULE = 2;
+}
+
+message Conditions {
+  repeated GeneralCondition generalConditions = 1;
+  repeated AdvanceCondition advanceConditions = 2;
+}
+
+message GeneralCondition {
+  string id = 1;
+  string ruleID = 2;
+  string conditionField = 3;
+  CompareOperator operator = 4;
+  string value = 5;
+  int64 updatedUtcTimestamp = 6;
+  int64 createdUtcTimestamp = 7;
+
+}
+
+message GeneralConditions {
+  repeated GeneralCondition generalConditions = 1;
+}
+
+message AdvanceCondition {
+  string id = 1;
+  string ruleId = 2;
+  string activityField = 3;
+  string activityValue = 4;
+  CompareOperator operator = 5;
+  string entityField = 6;
+  string entityValue = 7;
+  AggregateType aggregateType = 8;
+  int64 updatedUtcTimestamp = 9;
+  int64 createdUtcTimestamp = 10;
+}
+
+message AdvanceConditions {
+  repeated AdvanceCondition advanceConditions = 1;
+}
+
+enum ActionType {
+  UNKNOWN_ACTION_TYPE = 0 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Không xác định"];
+  SEND_EMAIL = 1 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Gửi Email"];
+  SEND_SMS = 2 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Gửi SMS"];
+}
+
+message Actions {
+  repeated ActionSendSMS actionSendSMSs = 1;
+  repeated ActionSendEmail actionSendEmails = 2;
+}
+
+message ActionSendSMS {
+  string id = 1;
+  string ruleID = 2;
+  string templateId = 3;
+  string additionalMessage = 4;
+  int64 updatedUtcTimestamp = 5;
+  int64 createdUtcTimestamp = 6;
+}
+
+message ActionSendEmail {
+  string id = 1;
+  string ruleID = 2;
+  string templateId = 3;
+  string additionalMessage = 4;
+  bool customReceiverOnly = 5;
+  string to = 6;
+  string cc = 7;
+  string bcc = 8;
+  int64 updatedUtcTimestamp = 9;
+  int64 createdUtcTimestamp = 10;
+}
+
+enum CompareOperator {
+  UNKNOWN_COMPARE_OPERATOR = 0 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Không xác định", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = "Không xác định"];
+  // For number data type
+  GREATER_THAN = 1 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Lớn hơn", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = ">"];
+  GREATER_THAN_OR_EQUALS = 2 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Lớn hơn hoặc bằng", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = ">="];
+  LESS_THAN = 3 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Nhỏ hơn", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = "<"];
+  LESS_THAN_OR_EQUALS = 4 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Nhỏ hơn hoặc bằng", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = "<="];
+  EQUALS = 5 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Bằng", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = "="];
+  NOT_EQUALS = 6 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Khác", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = "!="];
+  // For string data type
+  SAME = 7 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Bằng", (vn.edu.topicanative.saas.api.model.metadata.enumValueSymbol) = "="];
+  CONTAINS = 8 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Có chứa"];
+  START_WITH = 9 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Bắt đầu bằng"];
+  END_WITH = 10 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Kết thúc bằng"];
+}
+
+enum AggregateType {
+  UNKNOWN_AGGREGATE_TYPE = 0 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Không xác định"];
+  MIN = 1 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Nhỏ nhất"];
+  MAX = 2 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Lớn nhất"];
+  AVG = 3 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Trung bình"];
+  SUM = 4 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Tổng"];
+  COUNT = 5 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Số lượng"];
+  FIRST = 6 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Lần đầu tiên"];
+  PREVIOUS = 7 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Lần trước"];
+}
+message RuleId {
+  string id = 1;
+  string ruleKey = 2;
+}

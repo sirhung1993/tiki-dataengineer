@@ -1,0 +1,117 @@
+syntax = "proto3";
+//
+// Copyright (C) 2019 Topica Edtech Group.
+//
+
+package vn.edu.topicanative.saas.api.model.user;
+
+import "MetaDataModel.proto";
+
+message UserProfile {
+  UserType userType = 1;
+  UserEnvelope userEnvelope = 2;
+}
+
+message UserEnvelope {
+  StudentProfile studentProfile = 1;
+  TeacherProfile teacherProfile = 2;
+  AdvisorProfile advisorProfile = 3;
+}
+
+message StudentProfile {
+  Personal personal = 1;
+  Relation relation = 2;
+  Preference preference = 3;
+  Portfolio portfolio = 4;
+  CourseInfo currentCourse = 5;
+  repeated CourseInfo courses = 6;
+}
+
+message TeacherProfile {
+  Personal personal = 1;
+}
+
+message AdvisorProfile {
+  Personal personal = 1;
+}
+
+enum UserType {
+  UNKNOWN_USER_TYPE = 0 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Unknow"];
+  STUDENT = 1 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Học viên"];
+  TEACHER = 2 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "Giáo viên"];
+  ADVISOR = 3 [(vn.edu.topicanative.saas.api.model.metadata.enumValueDescription) = "CVHD"];
+}
+
+message Personal {
+  PersonalInfo personalInfo = 1;
+  Payment payment = 2;
+}
+
+message PersonalInfo {
+  string userid = 1 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "User Id"];
+  string name = 2 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Họ tên"];
+  string gender = 3 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Giới tính"];
+  string address = 4 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Địa chỉ"];
+  int32 age = 5 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Tuổi"];
+  string birthday = 6 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Ngày sinh"];
+  string job = 7 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Công việc"];
+  string phone = 8 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Số điện thoại"];
+  string email = 9 [(vn.edu.topicanative.saas.api.model.metadata.fieldDescription) = "Email"];
+}
+
+message CourseInfo {
+  string packageStatus = 1;
+  string packageID = 2;
+  string packageName = 3;
+  string packageWantLearn = 4;
+  int32 timePackage = 5;
+  float packageCost = 6;
+  string timeStartLearn = 7;
+}
+
+message Payment {
+  string payMethod = 1;
+  int64 payUtcTimeStamp = 2;
+  int64 transferAmount = 3;
+}
+
+message Relation {
+  Relationship relationship = 1;
+  Affiliation affiliation = 2;
+}
+
+enum Relationship {
+  UNKNOWN_RELATIONSHIP = 0;
+  FAMILY = 1;
+  FRIEND = 2;
+}
+
+message Affiliation {
+  string groupId = 1;
+  int32 memberGroup = 2;
+  Registration regis = 3;
+}
+
+enum Registration {
+  UNKNOWN_REGISTRATION = 0;
+  INDIVIDUAL = 1;
+  GROUP = 2;
+}
+
+message Preference {
+  PreferenceType preferenceType = 1;
+  repeated string timeWantLearn = 2;
+  repeated string teacherWantLearn = 3;
+}
+
+enum PreferenceType {
+  UNKNOWN_PREFERENCE_TYPE = 0;
+  ISVIP = 1;
+  NORMAL = 2;
+}
+
+message Portfolio {
+  repeated string interest = 1;
+  repeated string competency = 2;
+}
+

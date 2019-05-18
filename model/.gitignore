@@ -1,0 +1,16 @@
+.settings
+.project
+.classpath
+target/
+.idea/
+*.iml
+*.pyc
+*.swp
+.DS_Store
+MANIFEST.MF
+**/catalina.base_IS_UNDEFINED
+settings
+runTest.sh
+commands.txt
+time.pl
+api/model/src/main/protobuf/protoc.exe
